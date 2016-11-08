@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+        <script src="{{ asset('js/vendor/jquery.js') }}"></script>
+        <script src="{{ asset('js/vendor/what-input.js') }}"></script>
+        <script src="{{ asset('js/vendor/foundation.js') }}"></script>
+        <script>
+            $(document).foundation();
+        </script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
