@@ -7,3 +7,13 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    category_menu:
+        class: AppBundle\Service\Menu\Category
+    customer_menu:
+        class: AppBundle\Service\Menu\Customer
+    checkout_menu:
+        class: AppBundle\Service\Menu\Checkout
+    bestsellers:
+        class: AppBundle\Service\Menu\BestSellers
+    onsale:
+        class: AppBundle\Service\Menu\OnSale
