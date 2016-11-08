@@ -3,7 +3,6 @@
  * Created by PhpStorm.
  * User: jolyzhou
  * Date: 2016/11/8
- * Time: 11:25
  */
 namespace AppBundle\Service\Menu;
 
