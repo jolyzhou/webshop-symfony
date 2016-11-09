@@ -56,13 +56,13 @@
      - 生成shop/app/Resources/views/product/ view文件
      - 复制shop/app/Resources/views/product/文件夹到shop/src/Foggyline/CatalogBundle/Resources/views/Default/目录
      - 修改shop/src/Foggyline/CatalogBundle/Controller/ProductController.php里的各action的render（FoggylineCatalogBundle:default: string）
- - 修改Product,Category entity 中的image 注释（`* @Assert\File(mimeTypes={ "image/png", "image/jpeg" }, mimeTypesMessage="Please upload the PNG or JPEG image file.")`） 以便生成form时是上传控件
- - 添加上传服务shop/src/Foggyline/CatalogBundle/Resources/config/services.xml
- - 添加shop/src/Foggyline/CatalogBundle/Service/ImageUploader.php
- - 添加shop/src/Foggyline/CatalogBundle/Resources/config/parameters.yml 图片路径 foggyline_catalog_images_directory
- - 添加parameters.yml到shop/src/Foggyline/CatalogBundle/DependencyInjection/FoggylineCatalogExtension.php load方法里
- - 修改Product,Category 控制器new 和 edit action 上传图片和判断
-Thanks
+   - 修改Product,Category entity 中的image 注释（`* @Assert\File(mimeTypes={ "image/png", "image/jpeg" }, mimeTypesMessage="Please upload the PNG or JPEG image file.")`） 以便生成form时是上传控件
+   - 添加上传服务shop/src/Foggyline/CatalogBundle/Resources/config/services.xml
+   - 添加shop/src/Foggyline/CatalogBundle/Service/ImageUploader.php
+   - 添加shop/src/Foggyline/CatalogBundle/Resources/config/parameters.yml 图片路径 foggyline_catalog_images_directory
+   - 添加parameters.yml到shop/src/Foggyline/CatalogBundle/DependencyInjection/FoggylineCatalogExtension.php load方法里
+   - 修改Product,Category 控制器new 和 edit action 上传图片和判断
+## Thanks
  - Packt.Modular.Programming.with.PHP.7 BOOK
  - Symfony
  - Foundation
