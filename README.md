@@ -62,6 +62,9 @@
  - 添加shop/src/Foggyline/CatalogBundle/Resources/config/parameters.yml 图片路径 foggyline_catalog_images_directory
  - 添加parameters.yml到shop/src/Foggyline/CatalogBundle/DependencyInjection/FoggylineCatalogExtension.php load方法里
  - 修改Product,Category 控制器new 和 edit action 上传图片和判断
+
+====
+
 ### Thanks
  - Packt.Modular.Programming.with.PHP.7 BOOK
  - Symfony
