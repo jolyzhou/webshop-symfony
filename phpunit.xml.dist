@@ -14,7 +14,8 @@
 
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory>src/AppBundle/Tests</directory>
+            <!--<directory>src/AppBundle/Tests</directory>-->
+            <directory>src/Foggyline/CatalogBundle/Tests</directory>
         </testsuite>
     </testsuites>
 

@@ -42,6 +42,7 @@ twig:
         checkout_menu: '@checkout_menu'
         products_bestsellers: '@bestsellers'
         products_onsale: '@onsale'
+        add_to_cart_url: '@add_to_cart_url'
 
 # Doctrine Configuration
 doctrine:

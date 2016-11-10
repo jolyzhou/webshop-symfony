@@ -1,60 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Product</h1>
+    <div class="row">
+        <div class="small-12 large-6 columns">
+            <img class="thumbnail" src="{{ asset('uploads/foggyline_catalog_images/' ~ product.image) }}"/>
+        </div>
+        <div class="small-12 large-6 columns">
+            <h1>{{ product.title }}</h1>
+            <div>SKU: {{ product.sku }}</div>
+            {% if product.qty %}
+                <div>IN STOCK</div>
+            {% else %}
+                <div>OUT OF STOCK</div>
+            {% endif %}
+            <div>$ {{ product.price }}</div>
+            <form action="{{ add_to_cart_url.getAddToCartUrl(product.id) }}" method="get">
+                <div class="input-group">
+                    <span class="input-group-label">Qty</span>
+                    <input class="input-group-field" type="number">
+                    <div class="input-group-button">
+                        <input type="submit" class="button" value="Add to Cart">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ product.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ product.title }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ product.price }}</td>
-            </tr>
-            <tr>
-                <th>Sku</th>
-                <td>{{ product.sku }}</td>
-            </tr>
-            <tr>
-                <th>Urlkey</th>
-                <td>{{ product.urlKey }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ product.description }}</td>
-            </tr>
-            <tr>
-                <th>Qty</th>
-                <td>{{ product.qty }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ product.image }}</td>
-            </tr>
-            <tr>
-                <th>Onsale</th>
-                <td>{% if product.onsale %}Yes{% else %}No{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <p>{{ product.description }}</p>
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('product_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('product_edit', { 'id': product.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
+    {% if is_granted('ROLE_ADMIN') %}
+        <ul>
+            <li>
+                <a href="{{ path('product_edit', { 'id': product.id }) }}">Edit</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    {% endif %}
 {% endblock %}
