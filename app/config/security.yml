@@ -11,10 +11,17 @@ security:
                         password:
                             $2y$12$5NhNNGJPkyUXCmhc5By/beu3gXwHiNCbN1mEmD06usS65q547yhAG
                         roles: 'ROLE_ADMIN'
-        foggyline_custom
+        foggyline_customer:
              entity:
                  class: FoggylineCustomerBundle:Customer
                  property: username
+    encoders:
+        Symfony\Component\Security\Core\User\User:
+            algorithm: bcrypt
+            cost: 12
+        Foggyline\CustomerBundle\Entity\Customer:
+            algorithm: bcrypt
+            cost: 12
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -42,13 +49,6 @@ security:
             logout:
                 path:   /customer/logout
                 target: /
-    encoders:
-            Symfony\Component\Security\Core\User\User:
-                algorithm: bcrypt
-                cost: 12
-            Foggyline\CustomerBundle\Entity\Customer:
-                algorithm: bcrypt
-                cost: 12
     access_control:
          # protect any possible auto-generated CRUD actions from everyone's access
          - { path: /new, roles: ROLE_ADMIN }

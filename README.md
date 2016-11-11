@@ -115,6 +115,19 @@
    - 编辑src/Foggyline/CustomerBundle/Resources/config/services.xml加入foggyline_customer.customer_menu
    - 创建src/Foggyline/CustomerBundle/Service/Menu/CustomerMenu.php
    - 重写customer_menu service src/Foggyline/CustomerBundle/DependencyInjection/Compiler/OverrideServiceCompilerPass.php 加入到 src/Foggyline/CustomerBundle/FoggylineCustomerBundle.php
+ - 实现注册方法
+   - src/Foggyline/CustomerBundle/Controller/CustomerController.php 创建registerAction
+   - 创建src/Foggyline/CustomerBundle/Resources/views/Default/customer/register.html.twig
+ - 实现登录方法
+   - src/Foggyline/CustomerBundle/Controller/CustomerController.php 创建loginAction
+   - 创建src/Foggyline/CustomerBundle/Resources/views/Default/customer/login.html.twig
+   - 登录后创建accountAction和src/Foggyline/CustomerBundle/Resources/views/Default/customer/account.html.twig
+     - 修改src/Foggyline/CustomerBundle/Form/CustomerType.php加入生成form时的一些验证
+     - 修改src/Foggyline/CustomerBundle/Entity/Customer.php加入$plainPassword和方法
+ - 实现退出和忘记密码方法
+ - 单元测试
+   - 加入测试路径到phpunit.xml.dist里
+   - 加入测试文件src/Foggyline/CustomerBundle/Tests/Service/Menu/CustomerMenu.php和/src/Foggyline/CustomerBundle/Tests/Service/CustomerOrders.php
 
 ====
 

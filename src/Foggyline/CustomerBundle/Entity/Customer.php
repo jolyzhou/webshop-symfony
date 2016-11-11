@@ -4,6 +4,7 @@ namespace Foggyline\CustomerBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Customer
@@ -35,6 +36,12 @@ class Customer implements UserInterface, \Serializable
      * @ORM\Column(name="username", type="string", length=255, unique=true)
      */
     private $username;
+
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
 
     /**
      * @var string
@@ -163,6 +170,15 @@ class Customer implements UserInterface, \Serializable
     public function getUsername()
     {
         return $this->username;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
     }
 
     /**
