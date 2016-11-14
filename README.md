@@ -129,6 +129,103 @@
    - 加入测试路径到phpunit.xml.dist里
    - 加入测试文件src/Foggyline/CustomerBundle/Tests/Service/Menu/CustomerMenu.php和/src/Foggyline/CustomerBundle/Tests/Service/CustomerOrders.php
 
+#### 支付模块
+ - 创建支付模块 `php bin/console generate:bundle --namespace=Foggyline/PaymentBundle`
+ - (routing.yml里会增加foggyline_payment模块,修改prefix: / to prefix: /payment/以便与主模块冲突)
+ - 创建payment entity `php bin/console generate:doctrine:entity`
+   - card_type: string
+   - card_number: string
+   - expiry_date: date
+   - security_code: string
+ - 创建数据库表 `php bin/console doctrine:schema:update --force`
+ - 创建增删改查（CRUD）`php bin/console generate:doctrine:crud`
+ - 创建卡支付service
+   - src/Foggyline/PaymentBundle/Resources/config/services.xml加入foggyline_payment.card_payment
+   - 创建src/Foggyline/PaymentBundle/Service/CardPayment.php
+ - 创建卡支付控制器和路由
+   - 加入src/Foggyline/PaymentBundle/Resources/config/routing.xml三个路由 foggyline_payment_card_authorize，foggyline_payment_card_capture，foggyline_payment_card_cancel
+   - 把自动生成控制器方法全部去掉，写对应路由action
+ - 创建支票支付service
+   - src/Foggyline/PaymentBundle/Resources/config/services.xml加入foggyline_payment.check_money
+   - 创建src/Foggyline/PaymentBundle/Service/CheckMoneyPayment.php
+ - 单元测试
+   - 加入测试路径到phpunit.xml.dist里
+
+#### 出货模块
+ - 创建支付模块 `php bin/console generate:bundle --namespace=Foggyline/ShipmentBundle`
+ - (routing.yml里会增加foggyline_shipment模块,修改prefix: / to prefix: /shipment/以便与主模块冲突)
+ - 创建service控制器和路由
+ - 单元测试
+    - 加入测试路径到phpunit.xml.dist里
+
+#### 销售模块
+ - 创建支付模块 `php bin/console generate:bundle --namespace=Foggyline/SalesBundle`
+ - (routing.yml里会增加foggyline_sales模块,修改prefix: / to prefix: /shipment/以便与主模块冲突)
+ - 创建Cart 实体 `php bin/console generate:doctrine:entity`
+   - id: integer, auto-increment
+   - customer_id: string
+   - created_at: datetime
+   - modified_at: datetime
+ - 创建数据库表 `php bin/console doctrine:schema:update --force`
+ - 创建CartItem 实体 `php bin/console generate:doctrine:entity`
+   - id: integer, auto-increment
+   - cart_id: integer, foreign key that references the category table id column
+   - product_id: integer, foreign key that references product table id column
+   - qty: string
+   - unit_price: decimal
+   - created_at: datetime
+   - modified_at: datetime
+ - 创建数据库表 `php bin/console doctrine:schema:update --force`
+ - 创建Order实体 `php bin/console generate:doctrine:entity`
+   - id: integer, auto-increment
+   - customer_id: integer, foreign key that references the customer table id column
+   - items_price: decimal
+   - shipment_price: decimal
+   - total_price: decimal
+   - status: string
+   - customer_email: string
+   - customer_first_name: string
+   - customer_last_name: string
+   - address_first_name: string
+   - address_last_name: string
+   - address_country: string
+   - address_state: string
+   - address_city: string
+   - address_postcode: string
+   - address_street: string
+   - address_telephone: string
+   - payment_method: string
+   - shipment_method: string
+   - created_at: datetime
+   - modified_at: datetime
+ - 创建数据库表 `php bin/console doctrine:schema:update --force`
+ - 创建OrderItem实体 `php bin/console generate:doctrine:entity`
+   - id: integer, auto-increment
+   - sales_order_id: integer, foreign key that references the order table id column
+   - product_id: integer, foreign key that references product table id column
+   - title: string
+   - qty: int
+   - unit_price: decimal
+   - total_price: decimal
+   - modified_at: datetime
+ - 创建数据库表 `php bin/console doctrine:schema:update --force`
+ - 覆盖 add_to_cart_url service
+ - 创建 add action src/Foggyline/SalesBundle/Controller/CartController.php
+ - 创建 src/Foggyline/SalesBundle/Resources/config/routing.xml
+ - 创建 src/Foggyline/SalesBundle/DependencyInjection/Compiler/OverrideServiceCompilerPass.php 覆盖类
+ - 添加 src/Foggyline/SalesBundle/FoggylineSalesBundle.php 重新build
+ - 覆盖 checkout_menu service
+ - 覆盖 customer orders service
+ - 创建SalesOrderController `php bin/console generate:doctrine:crud`
+ - 覆盖 the bestsellers service
+ - 在 src/Foggyline/SalesBundle/Repository/SalesOrderItemRepository.php 加入getBestsellers方法
+ - 创建 Payment service
+ - 创建 Shipment service
+ - 单元测试
+   - 加入测试路径到phpunit.xml.dist里
+
+====
+##### 注：原书里代码有些小bug已在本例子修复
 ====
 
 ### Thanks

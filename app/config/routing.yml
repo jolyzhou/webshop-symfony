@@ -1,3 +1,23 @@
+foggyline_sales_sales_order:
+    resource: "@FoggylineSalesBundle/Controller/SalesOrderController.php"
+    type:     annotation
+
+foggyline_sales:
+    resource: "@FoggylineSalesBundle/Resources/config/routing.xml"
+    prefix:   /sales/
+
+foggyline_shipment:
+    resource: "@FoggylineShipmentBundle/Resources/config/routing.xml"
+    prefix:   /shipment/
+
+foggyline_payment_card:
+    resource: "@FoggylinePaymentBundle/Controller/CardController.php"
+    type:     annotation
+
+foggyline_payment:
+    resource: "@FoggylinePaymentBundle/Resources/config/routing.xml"
+    prefix:   /payment/
+
 foggyline_customer_customer:
     resource: "@FoggylineCustomerBundle/Controller/CustomerController.php"
     type:     annotation

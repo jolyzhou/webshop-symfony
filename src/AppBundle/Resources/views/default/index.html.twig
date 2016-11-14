@@ -6,11 +6,11 @@
         <div class="row products_bestsellers text-center small-up-1 medium-up-3 large-up-5" data-equalizer data-equalize-by-row="true">
             {% for product in products_bestsellers.getItems() %}
                 <div class="column product">
-                    <img src="{{ asset(product.img) }}" alt="missing image"/>
+                    <img src="{{ asset('uploads/foggyline_catalog_images/' ~ product.img) }}" alt="missing image"/>
                     <div><a href="{{ product.path }}">{{ product.name }}</a></div>
                     <div>${{ product.price }}</div>
                     <div>
-                        <a class="small button"href="{{ product.add_to_cart_url }}">
+                        <a class="small button" href="{{ add_to_cart_url.getAddToCartUrl(product.id) }}">
                             Add to Cart
                         </a>
                     </div>
@@ -27,7 +27,7 @@
                     <div><a href="{{ product.path }}">{{ product.name }}</a></div>
                     <div>${{ product.price }}</div>
                     <div>
-                        <a class="small button" href="{{ product.id }}">
+                        <a class="small button" href="{{ add_to_cart_url.getAddToCartUrl(product.id) }}">
                             Add to Cart
                         </a>
                     </div>

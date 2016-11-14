@@ -17,6 +17,8 @@
             <!--<directory>src/AppBundle/Tests</directory>-->
             <directory>src/Foggyline/CatalogBundle/Tests</directory>
             <directory>src/Foggyline/CustomerBundle/Tests</directory>
+            <directory>src/Foggyline/PaymentBundle/Tests</directory>
+            <directory>src/Foggyline/ShipmentBundle/Tests</directory>
         </testsuite>
     </testsuites>
 
